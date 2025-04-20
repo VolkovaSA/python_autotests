@@ -1,0 +1,12 @@
+name: skillbox
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - requests
+  - pytest
+  - python-chromedriver-binary
+  - pip:
+      - allure-pytest
+      - flake8
+      - pytest-playwright

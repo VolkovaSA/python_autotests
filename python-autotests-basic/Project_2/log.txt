@@ -1,0 +1,15 @@
+[2025-01-15 17:17:20,622][INFO][root] Browser has been started
+[2025-01-15 17:17:20,622][INFO][root] Preparing browser
+[2025-01-15 17:17:26,760][INFO][root] Browser has been closed
+[2025-01-15 17:17:27,718][INFO][root] Browser has been started
+[2025-01-15 17:17:27,718][INFO][root] Preparing browser
+[2025-01-15 17:17:35,680][INFO][root] Browser has been closed
+[2025-01-15 17:17:36,549][INFO][root] Browser has been started
+[2025-01-15 17:17:36,550][INFO][root] Preparing browser
+[2025-01-15 17:17:42,153][INFO][root] Browser has been closed
+[2025-01-15 17:17:42,987][INFO][root] Browser has been started
+[2025-01-15 17:17:42,988][INFO][root] Preparing browser
+[2025-01-15 17:25:17,188][INFO][root] Browser has been closed
+[2025-01-15 17:25:18,276][INFO][root] Browser has been started
+[2025-01-15 17:25:18,276][INFO][root] Preparing browser
+[2025-01-15 17:25:21,209][INFO][root] Browser has been closed

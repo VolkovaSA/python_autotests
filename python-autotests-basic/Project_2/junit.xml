@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="5" time="481.756" timestamp="2025-01-15T17:17:19.478719" hostname="LAPTOP-GJ7EHD51"><testcase classname="test_cases.TestCases" name="test_case_1" time="7.264" /><testcase classname="test_cases.TestCases" name="test_case_2" time="8.909" /><testcase classname="test_cases.TestCases" name="test_case_3" time="6.469" /><testcase classname="test_cases.TestCases" name="test_case_4" time="454.799"><failure message="playwright._impl._errors.TimeoutError: Page.wait_for_selector: Timeout 10000ms exceeded.&#10;Call log:&#10;  - waiting for locator(&quot;.ui-product-card-main__label&quot;) to be visible">self = &lt;test_cases.TestCases object at 0x00000183ADE50410&gt;
+set_up_browser = &lt;Page url='https://skillbox.ru/code/?type=profession&amp;duration_min=1&amp;duration_max=6&amp;topics=1s'&gt;
+page = &lt;Page url='https://skillbox.ru/code/?type=profession&amp;duration_min=1&amp;duration_max=6&amp;topics=1s'&gt;
+
+    @allure.story('Выбор курса на Skillbox')
+    @allure.description('''
+    Шаги:
+    1. Перейти на страницу курсов Skillbox
+    2. Применить фильтры: профессия, длительность курса, специализация 1С
+    3. Проверить, что все отфильтрованные курсы соответствуют заданным критериям
+    ''')
+    @allure.severity(allure.severity_level.NORMAL)
+    def test_case_4(self, set_up_browser, page):
+        page = set_up_browser
+        with allure.step("Переход на страницу курсов Skillbox"):
+            page.goto("https://skillbox.ru/code/")
+            page.wait_for_load_state('networkidle')
+            page.set_viewport_size({"width": 1500, "height": 800})
+    
+        with allure.step("Применение фильтров"):
+            page.locator('label[value="profession"]').click()
+    
+            range_1 = page.locator('(//div/button[@class="ui-range__dot"])[1]')
+            range_1.hover()
+            page.mouse.down()
+            page.mouse.move(50, 0)
+            page.mouse.up()
+            page.wait_for_timeout(400)
+    
+            range_2 = page.locator('(//div/button[@class="ui-range__dot"])[2]')
+            range_2.hover()
+            page.mouse.down()
+            page.mouse.move(-50, 0)
+            page.mouse.up()
+            page.wait_for_timeout(400)
+    
+            page.locator('//label//span/span[contains(text(), "1С")]').click()
+            page.wait_for_timeout(5000)
+    
+        with allure.step("Проверка отфильтрованных результатов"):
+            page.wait_for_load_state('networkidle')
+&gt;           page.wait_for_selector(".ui-product-card-main__label")
+
+test_cases.py:160: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\solom\miniconda3\Lib\site-packages\playwright\sync_api\_generated.py:8169: in wait_for_selector
+    self._sync(
+C:\Users\solom\miniconda3\Lib\site-packages\playwright\_impl\_page.py:424: in wait_for_selector
+    return await self._main_frame.wait_for_selector(**locals_to_params(locals()))
+C:\Users\solom\miniconda3\Lib\site-packages\playwright\_impl\_frame.py:323: in wait_for_selector
+    await self._channel.send("waitForSelector", locals_to_params(locals()))
+C:\Users\solom\miniconda3\Lib\site-packages\playwright\_impl\_connection.py:61: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x00000183B07B4DA0&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x00000183B0C0E5C0&gt;
+is_internal = False
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(task, "__pw_stack__", inspect.stack())
+        parsed_st = _extract_stack_trace_information_from_stack(st, is_internal)
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Page.wait_for_selector: Timeout 10000ms exceeded.
+E           Call log:
+E             - waiting for locator(".ui-product-card-main__label") to be visible
+
+C:\Users\solom\miniconda3\Lib\site-packages\playwright\_impl\_connection.py:528: TimeoutError</failure></testcase><testcase classname="test_cases.TestCases" name="test_case_5" time="4.013" /></testsuite></testsuites>
